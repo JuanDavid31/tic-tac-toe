@@ -10,7 +10,7 @@ while first_player_name.empty?
   first_player_name = gets.chomp
 end
 
-first_player_symbol = ''
+  first_player_symbol = ''
 while first_player_symbol.empty?
   puts 'Write the first player\' symbol. Choose between X or O:'
   first_player_symbol = gets.chomp.upcase
@@ -18,16 +18,33 @@ while first_player_symbol.empty?
   first_player_symbol = '' if first_player_symbol != 'O' && first_player_symbol != 'X'
 end
 
+first_player_symbol == "X" ? second_player_symbol = "O" : second_player_symbol = "X"
+
 second_player_name = ''
-while second_player_name.empty?
-  puts 'Write the second player\'s name:'
+while second_player_name.empty? || second_player_name == first_player_name
+  puts 'Write the second player\'s name: (It must be different than the first player\'s name)'
   second_player_name = gets.chomp
 end
 
-board = ' 1 | 2 | 3 \n'\
-        '---+---+--- \n'\
-        ' 4 | 5 | 6 \n'\
-        '---+---+--- \n'\
-        ' 7 | 8 | 9 \n'
+puts "#{first_player_name} is going to play with #{first_player_symbol} symbol"
+puts "#{second_player_name} is going to play with #{second_player_symbol} symbol"
+
+board = %(
+         1 | 2 | 3
+        ---+---+---
+         4 | 5 | 6
+        ---+---+---
+         7 | 8 | 9 )
 
 puts board
+
+puts "It\'s time for #{first_player_name} to make a move. Please choose the number of the cell you want to play"
+move = gets.chomp.to_i
+
+until move.between?(1, 9)
+  puts "please enter a valid number"
+  move = gets.chomp.to_i
+end
+
+puts move
+p move
