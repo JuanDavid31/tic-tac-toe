@@ -44,14 +44,12 @@ while play_again == 'Y'
   # Loop 2 - Check if the game is finished
   until tic_tac_toe.game_finished?
 
-    board = tic_tac_toe.get_board
-
-    puts board
+    tic_tac_toe.get_board
 
     puts "It's time for #{tic_tac_toe.current_player.name} to make a move. Please choose the number of the cell you want to play"
     move = gets.chomp.to_i
 
-    until move.between?(1, 9) && !cell_busy? move
+    until move.between?(1, 9) && !tic_tac_toe.cell_busy?(move) do
       puts 'please enter a valid number'
       move = gets.chomp.to_i
     end
@@ -59,15 +57,15 @@ while play_again == 'Y'
     # Mark it and change game_finished returns state if needed
     tic_tac_toe.mark_cell move
 
-    if tic_tac_toe.game_finished && tic_tac_toe.a_tie?
+    if tic_tac_toe.game_finished? && tic_tac_toe.a_tie?
       puts 'Is a tie!'
-      puts 'Game is finished. Total Score: 1 - 1'
-    elsif tic_tac_toe.game_finished && !tic_tac_toe.a_tie?
-      puts 'The winners is player 1'
-      puts 'Game is finished. Total Score: 1 - 1'
-    elsif !tic_tac_toe.game_finished
+      puts "Game is finished. Total Score  #{player1.name}: #{player1.score}, #{player2.name}: #{player2.score}"
+    elsif tic_tac_toe.game_finished? && !tic_tac_toe.a_tie?
+      tic_tac_toe.get_board
+      puts "The winners is #{tic_tac_toe.current_player.name}"
+      puts "Game is finished. Total Score  #{player1.name}: #{player1.score}, #{player2.name}: #{player2.score}"
+    elsif !tic_tac_toe.game_finished?
       tic_tac_toe.rotate_current_player
-      current_player = tic_tac_toe.current_player.name
     end
 
   end
@@ -79,7 +77,6 @@ while play_again == 'Y'
     play_again = '' if play_again != 'Y' && play_again != 'N'
   end
 
-  game_finished = false # Remove this
-  # TODO: Reset board state
+  tic_tac_toe.reset_game
 
 end
