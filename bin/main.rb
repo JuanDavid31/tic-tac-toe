@@ -31,7 +31,7 @@ puts "#{second_player_name} is going to play with #{second_player_symbol} symbol
 
 # Returns random boolean for the sake of mocking
 def cell_busy?
-  p [true, false].sample
+  false
 end
 
 $finished = false
@@ -73,7 +73,7 @@ while play_again == 'Y'
     puts "It's time for #{current_player} to make a move. Please choose the number of the cell you want to play"
     move = gets.chomp.to_i
 
-    until move.between?(1, 9) && cell_busy?
+    until move.between?(1, 9) && !cell_busy?
       puts 'please enter a valid number'
       move = gets.chomp.to_i
     end
@@ -99,5 +99,7 @@ while play_again == 'Y'
     play_again = gets.chomp.upcase
     play_again = '' if play_again != 'Y' && play_again != 'N'
   end
+
+  $finished = false
 
 end
