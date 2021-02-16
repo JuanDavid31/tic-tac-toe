@@ -10,7 +10,7 @@ while first_player_name.empty?
   first_player_name = gets.chomp
 end
 
-  first_player_symbol = ''
+first_player_symbol = ''
 while first_player_symbol.empty?
   puts 'Write the first player\' symbol. Choose between X or O:'
   first_player_symbol = gets.chomp.upcase
@@ -18,7 +18,7 @@ while first_player_symbol.empty?
   first_player_symbol = '' if first_player_symbol != 'O' && first_player_symbol != 'X'
 end
 
-first_player_symbol == "X" ? second_player_symbol = "O" : second_player_symbol = "X"
+second_player_symbol = first_player_symbol == 'X' ? 'O' : 'X'
 
 second_player_name = ''
 while second_player_name.empty? || second_player_name == first_player_name
@@ -79,7 +79,7 @@ while play_again == 'Y'
     end
 
     # Mark it and change game_finished returns state if needed
-    mark_cell #move
+    mark_cell # move
 
     if game_finished? && a_tie?
       puts 'Is a tie!'
