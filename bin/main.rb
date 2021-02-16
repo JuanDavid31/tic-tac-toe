@@ -34,15 +34,7 @@ def cell_busy?
   false
 end
 
-$finished = false
-
-def mark_cell
-  $finished = [true, false].sample
-end
-
-def game_finished?
-  $finished
-end
+game_finished = false
 
 def a_tie?
   [true, false].sample
@@ -59,7 +51,7 @@ end
 while play_again == 'Y'
 
   # Loop 2 - Check if the game is finished
-  until game_finished?
+  until game_finished
 
     board = %(
          1 | 2 | 3
@@ -79,15 +71,16 @@ while play_again == 'Y'
     end
 
     # Mark it and change game_finished returns state if needed
-    mark_cell # move
+    # mark_cell move
+    game_finished = [true, false].sample
 
-    if game_finished? && a_tie?
+    if game_finished && a_tie?
       puts 'Is a tie!'
       puts 'Game is finished. Total Score: 1 - 1'
-    elsif game_finished? && !a_tie?
+    elsif game_finished && !a_tie?
       puts 'The winners is player 1'
       puts 'Game is finished. Total Score: 1 - 1'
-    elsif game_finished?
+    elsif !game_finished
       current_player = get_next_player first_player_name, second_player_name, current_player
     end
 
@@ -100,6 +93,6 @@ while play_again == 'Y'
     play_again = '' if play_again != 'Y' && play_again != 'N'
   end
 
-  $finished = false
+  game_finished = false
 
 end
