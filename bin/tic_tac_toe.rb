@@ -2,7 +2,7 @@ require './player'
 
 class TicTacToe
   attr_reader :player1, :player2, :current_player
-  WIN_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [6, 4, 2]]
+  WIN_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [6, 4, 2]].freeze
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -14,7 +14,7 @@ class TicTacToe
 
   def cell_busy?(cell)
     cell_value = @board[cell - 1]
-    cell_value == 'X' || cell_value == 'O'
+    %w[X O].include? cell_value
   end
 
   def game_finished?
