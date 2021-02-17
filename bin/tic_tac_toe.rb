@@ -13,7 +13,7 @@ class TicTacToe
 
   def cell_busy?(cell)
     cell_value = @board[cell - 1]
-    return cell_value == 'X' || cell_value == 'O'
+    cell_value == 'X' || cell_value == 'O'
   end
 
   def game_finished?
@@ -30,7 +30,7 @@ class TicTacToe
     puts board
   end
 
-  def mark_cell cell
+  def mark_cell(cell)
     @board[cell - 1] = current_player.symbol
     won?
     # Check if the game is finished
@@ -73,13 +73,13 @@ class TicTacToe
       @game_finished = true
       @winner = @current_player
       current_player.increase_score
-    elsif @board.all? { |cell| !cell.is_a?(Numeric)  }
+    elsif @board.all? { |cell| !cell.is_a?(Numeric) }
       @game_finished = true
     end
   end
 
   def a_tie?
-    if @game_finished && @board.all? { |cell| !cell.is_a?(Numeric)  }
+    if @game_finished && @board.all? { |cell| !cell.is_a?(Numeric) }
       true
     else
       false
@@ -91,5 +91,4 @@ class TicTacToe
     @winner = nil
     @game_finished = false
   end
-
 end
