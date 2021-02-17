@@ -46,10 +46,11 @@ while play_again == 'Y'
 
     tic_tac_toe.get_board
 
-    puts "It's time for #{tic_tac_toe.current_player.name} to make a move. Please choose the number of the cell you want to play"
+    puts "It's time for #{tic_tac_toe.current_player.name} to make a move.
+    Please choose the number of the cell you want to play"
     move = gets.chomp.to_i
 
-    until move.between?(1, 9) && !tic_tac_toe.cell_busy?(move) do
+    until move.between?(1, 9) && !tic_tac_toe.cell_busy?(move)
       puts 'please enter a valid number'
       move = gets.chomp.to_i
     end
