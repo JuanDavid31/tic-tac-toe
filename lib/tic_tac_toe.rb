@@ -1,4 +1,4 @@
-require './player'
+require_relative '../lib/player'
 
 class TicTacToe
   attr_reader :player1, :player2, :current_player
