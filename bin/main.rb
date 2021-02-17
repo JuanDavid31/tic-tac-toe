@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './tic_tac_toe'
+require_relative '../lib/tic_tac_toe'
 
 puts 'Tic Tac Toe.'
 puts 'Numbers are available cells, symbols are busy cells. Every player have a different symbol.
