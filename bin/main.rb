@@ -44,7 +44,7 @@ while play_again == 'Y'
   # Loop 2 - Check if the game is finished
   until tic_tac_toe.game_finished?
 
-    tic_tac_toe.get_board
+    puts tic_tac_toe.return_board
 
     puts "It's time for #{tic_tac_toe.current_player.name} to make a move.
     Please choose the number of the cell you want to play"
@@ -62,7 +62,7 @@ while play_again == 'Y'
       puts 'Is a tie!'
       puts "Game is finished. Total Score  #{player1.name}: #{player1.score}, #{player2.name}: #{player2.score}"
     elsif tic_tac_toe.game_finished? && !tic_tac_toe.a_tie?
-      tic_tac_toe.get_board
+      puts tic_tac_toe.return_board
       puts "The winners is #{tic_tac_toe.current_player.name}"
       puts "Game is finished. Total Score  #{player1.name}: #{player1.score}, #{player2.name}: #{player2.score}"
     elsif !tic_tac_toe.game_finished?

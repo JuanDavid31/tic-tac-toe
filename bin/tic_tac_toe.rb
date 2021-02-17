@@ -2,6 +2,7 @@ require './player'
 
 class TicTacToe
   attr_reader :player1, :player2, :current_player
+  WIN_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [6, 4, 2]]
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -20,14 +21,14 @@ class TicTacToe
     @game_finished
   end
 
-  def get_board
+  def return_board
     board = %(
        #{@board[0]} | #{@board[1]} | #{@board[2]}
       ---+---+---
        #{@board[3]} | #{@board[4]} | #{@board[5]}
       ---+---+---
        #{@board[6]} | #{@board[7]} | #{@board[8]} )
-    puts board
+    board
   end
 
   def mark_cell(cell)
@@ -41,40 +42,14 @@ class TicTacToe
   end
 
   def won?
-    if @board[0] == @board[1] && @board[1] == @board[2]
-      @game_finished = true
-      @winner = @current_player
-      current_player.increase_score
-    elsif @board[3] == @board[4] && @board[4] == @board[5]
-      @game_finished = true
-      @winner = @current_player
-      current_player.increase_score
-    elsif @board[6] == @board[7] && @board[7] == @board[8]
-      @game_finished = true
-      @winner = @current_player
-      current_player.increase_score
-    elsif @board[0] == @board[3] && @board[3] == @board[6]
-      @game_finished = true
-      @winner = @current_player
-      current_player.increase_score
-    elsif @board[1] == @board[4] && @board[4] == @board[7]
-      @game_finished = true
-      @winner = @current_player
-      current_player.increase_score
-    elsif @board[2] == @board[5] && @board[5] == @board[8]
-      @game_finished = true
-      @winner = @current_player
-      current_player.increase_score
-    elsif @board[0] == @board[4] && @board[4] == @board[8]
-      @game_finished = true
-      @winner = @current_player
-      current_player.increase_score
-    elsif @board[6] == @board[4] && @board[4] == @board[2]
-      @game_finished = true
-      @winner = @current_player
-      current_player.increase_score
-    elsif @board.all? { |cell| !cell.is_a?(Numeric) }
-      @game_finished = true
+    WIN_COMBINATIONS.each do |win_comb|
+      if @board[win_comb[0]] == @board[win_comb[1]] && @board[win_comb[1]] == @board[win_comb[2]]
+        @game_finished = true
+        @winner = @current_player
+        current_player.increase_score
+      elsif @board.all? { |cell| !cell.is_a?(Numeric) }
+        @game_finished = true
+      end
     end
   end
 
