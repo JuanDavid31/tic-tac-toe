@@ -132,6 +132,12 @@ describe TicTacToe do
       expect(full_tie_tic_tac_toe.board).to eq([1, 2, 3, 4, 5, 6, 7, 8, 9])
     end
   end
+  describe '#mark_cell' do
+    it 'changes the value of the choosen cell in the array' do
+      empty_tic_tac_toe.mark_cell(5)
+      expect(empty_tic_tac_toe.board).to eq([1, 2, 3, 4, 'Y', 6, 7, 8, 9])
+    end
+  end
 end
 
 describe Player do
