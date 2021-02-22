@@ -1,7 +1,8 @@
 require_relative '../lib/player'
 
 class TicTacToe
-  attr_reader :player1, :player2, :current_player
+  attr_reader :player1, :player2, :current_player, :winner, :game_finished
+  attr_accessor :board
   WIN_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [6, 4, 2]].freeze
   def initialize(player1, player2)
     @player1 = player1
@@ -21,7 +22,7 @@ class TicTacToe
     @game_finished
   end
 
-  def board
+  def disp_board
     %(
            #{@board[0]} | #{@board[1]} | #{@board[2]}
           ---+---+---
